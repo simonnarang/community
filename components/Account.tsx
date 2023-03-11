@@ -11,6 +11,7 @@ export default function Account({ session }: { session: Session }) {
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState<Profiles['username']>(null)
   const [website, setWebsite] = useState<Profiles['website']>(null)
+  const [type, setType] = useState<Profiles['type']>(null)
   const [avatar_url, setAvatarUrl] = useState<Profiles['avatar_url']>(null)
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function Account({ session }: { session: Session }) {
         if (data) {
           setUsername(data.username)
           setWebsite(data.website)
+          setType(data.type)
           setAvatarUrl(data.avatar_url)
         }
       } catch (error) {
@@ -49,10 +51,12 @@ export default function Account({ session }: { session: Session }) {
     username,
     website,
     avatar_url,
+    type
   }: {
     username: Profiles['username']
     website: Profiles['website']
     avatar_url: Profiles['avatar_url']
+    type: Profiles['type']
   }) {
     try {
       setLoading(true)
@@ -64,6 +68,7 @@ export default function Account({ session }: { session: Session }) {
         website,
         avatar_url,
         updated_at: new Date().toISOString(),
+        type,
       }
 
       let { error } = await supabase.from('profiles').upsert(updates)
@@ -85,7 +90,7 @@ export default function Account({ session }: { session: Session }) {
         size={150}
         onUpload={(url) => {
           setAvatarUrl(url)
-          updateProfile({ username, website, avatar_url: url })
+          updateProfile({ username, website, avatar_url: url, type })
         }}
       />
       <div>
@@ -109,6 +114,20 @@ export default function Account({ session }: { session: Session }) {
           value={website || ''}
           onChange={(e) => setWebsite(e.target.value)}
         />
+      </div>
+
+      <div>
+        <label htmlFor="type">Type</label>
+        <input
+          id="type"
+          type="type"
+          value={type || ''}
+          onChange={(e) => setType(e.target.value)}
+        />
+      </div>
+
+      <div>
+        <p></p>
       </div>
 
       <div>
