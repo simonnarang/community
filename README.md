@@ -1,2 +1,5 @@
 # CommUnity mono repo
-See starter.md for local run instructions
+
+To run: npm i then npm run dev
+
+See starter.md for further information (but don't need to follow these steps, our DB is already set up).
