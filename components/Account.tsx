@@ -22,7 +22,7 @@ export default function Account({ session }: { session: Session }) {
 
         let { data, error, status } = await supabase
           .from('profiles')
-          .select(`username, website, avatar_url`)
+          .select(`username, website, avatar_url, type`)
           .eq('id', user.id)
           .single()
 
@@ -115,12 +115,12 @@ export default function Account({ session }: { session: Session }) {
           onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
-
+      
       <div>
         <label htmlFor="type">Type</label>
         <input
           id="type"
-          type="type"
+          type="text"
           value={type || ''}
           onChange={(e) => setType(e.target.value)}
         />
@@ -133,7 +133,7 @@ export default function Account({ session }: { session: Session }) {
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
+          onClick={() => updateProfile({ username, website, avatar_url, type })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}
