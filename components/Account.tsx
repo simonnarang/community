@@ -4,7 +4,7 @@ import Avatar from './Avatar'
 
 import { Database } from '../utils/database.types'
 type Profiles = Database['public']['Tables']['profiles']['Row']
-type Events = Database['public']['Tables']['events']['Row']
+// type Events = Database['public']['Tables']['events']['Row']
 
 
 export default function Account({ session }: { session: Session }) {
@@ -84,6 +84,7 @@ export default function Account({ session }: { session: Session }) {
     }
   }
 /*
+code to work on events -- Zyan
   async function updateEvent({
     username,
     website,
@@ -177,7 +178,7 @@ export default function Account({ session }: { session: Session }) {
         </button>
       </div>
 {/* 
-  button to add an event
+  button to add an event -- Zyan
       <div>
         <button
           className="button block"
