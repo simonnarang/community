@@ -4,6 +4,8 @@ import Avatar from './Avatar'
 
 import { Database } from '../utils/database.types'
 type Profiles = Database['public']['Tables']['profiles']['Row']
+type Events = Database['public']['Tables']['events']['Row']
+
 
 export default function Account({ session }: { session: Session }) {
   const supabase = useSupabaseClient<Database>()
@@ -81,7 +83,42 @@ export default function Account({ session }: { session: Session }) {
       setLoading(false)
     }
   }
+/*
+  async function updateEvent({
+    username,
+    website,
+    avatar_url,
+    type
+  }: {
+    username: Profiles['username']
+    website: Profiles['website']
+    avatar_url: Profiles['avatar_url']
+    type: Profiles['type']
+  }) {
+    try {
+      setLoading(true)
+      if (!user) throw new Error('No user')
 
+      const updates = {
+        id: user.id,
+        username,
+        website,
+        avatar_url,
+        updated_at: new Date().toISOString(),
+        type,
+      }
+
+      let { error } = await supabase.from('profiles').upsert(updates)
+      if (error) throw error
+      alert('Profile updated!')
+    } catch (error) {
+      alert('Error updating the data!')
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+*/
   return (
     <div className="form-widget">
       <Avatar
@@ -139,7 +176,18 @@ export default function Account({ session }: { session: Session }) {
           {loading ? 'Loading ...' : 'Update'}
         </button>
       </div>
-
+{/* 
+  button to add an event
+      <div>
+        <button
+          className="button block"
+          onClick={() => updateEvent({ username, eventName, location, date, time, type })}
+          disabled={loading}
+        >
+          {loading ? 'Loading ...' : 'Update'}
+        </button>
+      </div>
+*/}
       <div>
         <button className="button block" onClick={() => supabase.auth.signOut()}>
           Sign Out
