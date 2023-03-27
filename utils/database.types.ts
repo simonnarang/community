@@ -48,8 +48,7 @@ export interface Database {
           event_name?: string | null
           event_flyer?: string | null
           location?: string | null
-          date?: string | null
-          time?: string | null
+          event_time?: string | null
           type?: string | null
         }
         Insert: {
@@ -60,8 +59,7 @@ export interface Database {
           event_name?: string | null
           event_flyer?: string | null
           location?: string | null
-          date?: string | null
-          time?: string | null
+          event_time?: string | null
           type?: string | null
         }
         Update: {
@@ -72,8 +70,7 @@ export interface Database {
           event_name?: string | null
           event_flyer?: string | null
           location?: string | null
-          date?: string | null
-          time?: string | null
+          event_time?: string | null
           type?: string | null
         }
       }

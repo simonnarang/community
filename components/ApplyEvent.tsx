@@ -17,8 +17,7 @@ export function ApplyEvent() {
   const [event_name, setEventName] = useState<Events['event_name']>(null)
   const [event_flyer, setEventFlyer] = useState<Events['event_flyer']>(null)
   const [location, setLocation] = useState<Events['location']>(null)
-  const [date, setEventDate] = useState<Events['date']>(null)
-  const [time, setEventTime] = useState<Events['time']>(null)
+  const [event_time, setEventTime] = useState<Events['event_time']>(null)
     
 
 
@@ -28,7 +27,7 @@ export function ApplyEvent() {
   
       let { data, error, status } = await supabase
         .from('events')
-        .select(`username, org_name, event_name, event_flyer, location, date, time, type`)
+        .select(`username, org_name, event_name, event_flyer, location, event_time, type`)
         .eq('id', user.id)
         .single()
   
@@ -40,8 +39,7 @@ export function ApplyEvent() {
         setEventName(data.event_name)
         setEventFlyer(data.event_flyer)
         setLocation(data.location)
-        setEventDate(data.date)
-        setEventTime(data.time)
+        setEventTime(data.event_time)
       }
     } catch (error) {
       alert('Error loading event data!')
@@ -55,16 +53,14 @@ export function ApplyEvent() {
         event_name,
         event_flyer,
         location,
-        date,
-        time,
+        event_time,
       }: 
       {
         org_name: Events['org_name']
         event_name: Events['event_name']
         event_flyer: Events['event_flyer']
         location: Events['location']
-        date: Events['date']
-        time: Events['time']
+        event_time: Events['event_time']
       }) {
         try {
           if (!user) throw new Error('No user')
@@ -75,8 +71,7 @@ export function ApplyEvent() {
             event_name,
             event_flyer,
             location,
-            date,
-            time,
+            event_time,
             updated_at: new Date().toISOString(),
           }
   
@@ -135,21 +130,11 @@ export function ApplyEvent() {
           </div>
 
           <div>
-            <label htmlFor="date">Date of Event</label>
+            <label htmlFor="event_time"> Date & Time of Event</label>
             <input
-              id="date"
+              id="event_time"
               type="text"
-              value={date || ''}
-              onChange={(e) => setEventDate(e.target.value)}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="time">Time of Event</label>
-            <input
-              id="time"
-              type="text"
-              value={time || ''}
+              value={event_time || ''}
               onChange={(e) => setEventTime(e.target.value)}
             />
           </div>
@@ -161,7 +146,7 @@ export function ApplyEvent() {
           <div>
             <button
               className="button block"
-              onClick={() => addEvent({org_name, event_name, event_flyer, location, date, time})}
+              onClick={() => addEvent({org_name, event_name, event_flyer, location, event_time })}
             >
               Update
             </button>
