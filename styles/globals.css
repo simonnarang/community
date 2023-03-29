@@ -170,7 +170,7 @@ body,
 label {
   display: block;
   margin: 5px 0;
-  color: var(--custom-color-secondary);
+  color: var(--custom-color);
   font-size: 0.8rem;
   text-transform: uppercase;
 }
@@ -431,3 +431,14 @@ button.primary,
   margin-bottom: 10px;
   text-decoration: none;
 }
+
+/* Apply event  */
+
+.applyEvent {
+  margin: 0;
+}
+
+.applyEventLabel {
+  margin: 0;
+}
+

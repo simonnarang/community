@@ -6,8 +6,7 @@ export default function AddEvent() {
 
   return (
     <>
-      <div> Here you can add your event!</div>
-
+      <h1> Here you can add your event!</h1>
       <ApplyEvent />
     </>
   )

@@ -6,6 +6,8 @@ import { Database } from '../utils/database.types'
 
 import { v4 as uuidv4 } from "uuid"
 
+import Link from "next/link"
+
 type Events = Database['public']['Tables']['events']['Row']
 
 
@@ -87,6 +89,13 @@ export function ApplyEvent() {
 
   return (
     <>
+      <div>
+        <Link href="/Homepage">
+          <button className="button block" >
+            Go back to home 
+          </button>
+        </Link>
+      </div>
       <div className="form-widget">
         
           <div>
@@ -130,7 +139,10 @@ export function ApplyEvent() {
           </div>
 
           <div>
-            <label htmlFor="event_time"> Date & Time of Event</label>
+            <label
+              htmlFor="event_time"
+              style={{color: "white"}}
+            > Date & Time of Event</label>
             <input
               id="event_time"
               type="text"
