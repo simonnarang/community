@@ -7,13 +7,42 @@ import Link from 'next/link';
 import { Database } from '../utils/database.types'
 type Events = Database['public']['Tables']['events']['Row']
 
+
+type EventType = {
+  
+    id: Events["id"],
+    org_name: Events['org_name'],
+    event_name: Events['event_name'],
+    event_flyer: Events['event_flyer'],
+    location: Events['location'],
+    event_time: Events['event_time'],
+    type: Events["type"]
+}
+
 export default function Homepage({ session }: { session: Session }){
 
 
   const supabase = useSupabaseClient<Database>()
   const user = useUser()
 
-  const [events, setEvents] = useState<[Events]>([]);
+  const [events, setEvents] = useState<{
+  
+    id: Events["id"],
+    org_name: Events['org_name'],
+    event_name: Events['event_name'],
+    event_flyer: Events['event_flyer'],
+    location: Events['location'],
+    event_time: Events['event_time'],
+    type: Events["type"]
+}[]>([{
+    id: "", 
+    org_name : "" || null || undefined,
+    event_name: "" || null || undefined, 
+    event_flyer: "" || null || undefined, 
+    location: "" || null || undefined, 
+    event_time:"" || null || undefined,
+    type: "" || null || undefined
+    }]);
 
   const retrieveEvents = async() => {
     try {
@@ -26,13 +55,60 @@ export default function Homepage({ session }: { session: Session }){
   
       if (error && status !== 406) { throw new Error(error.message) }
   
+      console.log(data)
+
       if (data) {
-        setEvents(data)
+
+        let receivedData: {
+        id: string ,
+        org_name: string | null | undefined,
+        event_name: string | null | undefined,
+        event_flyer: string | null | undefined,
+        location: string | null | undefined,
+        event_time: string | null | undefined,
+        type: string | null | undefined
+      } = {
+        id: data.id,
+        org_name: data.org_name
+        event_name: string | null | undefined,
+        event_flyer: string | null | undefined,
+        location: Events['location'],
+        event_time: string | null | undefined,
+        type: string | null | undefined
+
+
+      }
+        let array: {
+  
+          id: Events["id"],
+          org_name: Events['org_name'],
+          event_name: Events['event_name'],
+          event_flyer: Events['event_flyer'],
+          location: Events['location'],
+          event_time: Events['event_time'],
+          type: Events["type"]
+      }[] = [{
+        id: "", 
+        org_name : data.org_name,
+        event_name: "" || null || undefined, 
+        event_flyer: "" || null || undefined, 
+        location: "" || null || undefined, 
+        event_time:"" || null || undefined,
+        type: "" || null || undefined
+        
+
+      }];
+
+
+
+        
+        setEvents(array)
       }
     } catch (error) {
-      if (error.message !== "No user") {
-        alert('Error loading event data!')
-      }
+      // if (error.message !== "No user") {
+      //   alert('Error loading event data!')
+      // }
+      console.log(error)
     }
   }
 
