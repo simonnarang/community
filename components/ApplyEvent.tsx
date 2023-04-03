@@ -11,6 +11,13 @@ import Link from "next/link"
 type Events = Database['public']['Tables']['events']['Row']
 
 
+/**
+ * TODOs
+  - Figure out validate for event_time on client side
+  - Figure out how to transform valid event_time to Date object 
+  - Convert that to a string 
+ */
+
 export function ApplyEvent() {
   const supabase = useSupabaseClient<Database>()
   const user = useUser()
@@ -67,18 +74,21 @@ export function ApplyEvent() {
         try {
           if (!user) throw new Error('No user')
   
+          let time: string | null = null;
+          if (event_time) { time = event_time}
           const updates = {
             id: uuidv4(),
             org_name,
             event_name,
             event_flyer,
             location,
-            event_time,
+            event_time: time,
             updated_at: new Date().toISOString(),
           }
-  
+
           let { data, error } = await supabase.from('events').insert(updates);
           if (error) { throw error }
+
           alert('Event updated!')
         } catch (error) {
           console.log(error)
@@ -146,7 +156,7 @@ export function ApplyEvent() {
             <input
               id="event_time"
               type="text"
-              value={event_time || ''}
+              value={event_time || undefined}
               onChange={(e) => setEventTime(e.target.value)}
             />
           </div>
