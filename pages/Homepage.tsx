@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { Database } from '../utils/database.types'
 import { Events, EventType } from "../utils/event.types"
 
+import EventFrame from "../components/EventFrame"
+import { Grid } from '@mantine/core';
+
 const blank_event = {
   id: "", 
   org_name : "",
@@ -77,15 +80,17 @@ export default function Homepage({ session }: { session: Session }){
         </Link>
       </div>
 
-       { JSON.stringify(events) !== "[]" ? events.map((event: Events ) => {  
-          return (
-            <div key={event.id}>
-              {event.event_name}
-              <br/>
-            </div>
-          )
-        }) : "No events!"
-       }
+      <Grid columns={4} style={{ padding: 10, border: "grey" }}>
+
+       { 
+       JSON.stringify(events) !== "[]" ? events.map((event: EventType, index: any) => {  
+          return event.event_name !== null ? (
+          <Grid.Col span={1} style={{ width: 100 }} key={index}>
+            <EventFrame eventDetails={event}/> 
+          </Grid.Col>) : <></>
+        }): "No events!"
+      }
+      </Grid>
     </>
   )
 }
