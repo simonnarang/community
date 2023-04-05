@@ -1,9 +1,10 @@
+import { Center } from "@mantine/core";
 import Link from "next/link";
 
 export default function index() {
   return (
     <>
-    <div class="header">
+    <div className="header">
 		<ul>
 			<li>
 				<a href="#">Home</a>
@@ -24,8 +25,10 @@ export default function index() {
 		</ul>
 		<h2>CommUnity</h2>
 		<p>A new  platform that redefines community engagement for college students, on and off campus.</p>
-    <div align="center">
-      <img src="/landing-image.png" alt="image" id="landing-image" width={300} />
+    <div>
+      <Center>
+        <img src="/landing-image.png" alt="image" id="landing-image" width={300} />
+      </Center>
     </div>
 	</div>
   </>
