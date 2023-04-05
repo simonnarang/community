@@ -18,10 +18,10 @@ function MyApp({
       withGlobalStyles
       withNormalizeCSS
       theme={{
-        colorScheme: "dark",
+        colorScheme: 'dark',
         headings: {
-          fontFamily: "Roboto, sans-serif",
-        }
+          fontFamily: 'Roboto, sans-serif',
+        },
       }}
     >
       <SessionContextProvider

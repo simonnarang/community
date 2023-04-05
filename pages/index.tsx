@@ -1,11 +1,8 @@
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Center } from '@mantine/core'
 
-export default function LandingPage() {
-  const supabase = useSupabaseClient()
+export default function index() {
   return (
     <>
     <div class="header">
