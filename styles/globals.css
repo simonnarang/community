@@ -6,11 +6,12 @@ body {
   --custom-panel-color: #222;
   --custom-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.8);
   --custom-color: #fff;
-  --custom-color-brand: #24b47e;
+  --custom-color-brand: #6B00D7;
   --custom-color-secondary: #666;
   --custom-border: 1px solid #333;
   --custom-border-radius: 5px;
   --custom-spacing: 5px;
+  --custom-padding: 30px
 
   padding: 0;
   margin: 0;
@@ -291,6 +292,7 @@ button.primary,
   flex-flow: row;
   border-top: var(--custom-border);
   background-color: var(--custom-bg-color);
+  padding: 15px;
 }
 .footer div {
   padding: var(--custom-spacing);
@@ -442,3 +444,101 @@ button.primary,
   margin: 0;
 }
 
+#landing-logo {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+#purple-landing-button {
+  background-color: rgb(98, 6, 184);
+  color: white;
+  float: right;
+  margin-right: 20px;
+  text-transform: uppercase;
+}
+
+.header {
+  border-bottom: var(--custom-border);
+}
+
+#landing-text {
+  /* font-family: 'Courier New', Courier, monospace; */
+  color: lightgrey;
+  font-size: 50px;
+}
+
+/* LANDING PAGE */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: ubuntu;
+}
+.header {
+	z-index: 1;
+	background: linear-gradient(-45deg, red, green, blue, yellow);
+	background-size: 400% 400%;
+	width: 100%;
+	height: 100vh;
+	animation: animate 15s ease infinite;
+}
+.header ul {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+}
+.header ul li {
+	display: inline-block;
+	padding: 40px 15px;
+}
+.header ul li a {
+	text-decoration: none;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 20px;
+	padding: 5px 10px;
+}
+.header ul li a:hover {
+	background: #fff;
+	color: #000;
+}
+.header h2 {
+	text-align: center;
+	color: #fff;
+	font-size: 60px;
+	margin-top: 15%;
+	margin-bottom: 20px;
+}
+.header p {
+	text-align: center;
+	font-size: 18px;
+	width: 35%;
+	margin: auto;
+	color: #ddd;
+	line-height: 1.7;
+}
+@keyframes animate {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#landing-image {
+  margin-top: 25px;
+}
+
+.box {
+  background-image: url('https://i.postimg.cc/vHXWB9DN/1.png');
+}

@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
 import Avatar from './Avatar'
-import Link from 'next/link';
-
+import Link from 'next/link'
 
 import { Database } from '../utils/database.types'
 type Profiles = Database['public']['Tables']['profiles']['Row']
-
 
 export default function Account({ session }: { session: Session }) {
   const supabase = useSupabaseClient<Database>()
@@ -18,14 +16,11 @@ export default function Account({ session }: { session: Session }) {
   const [type, setType] = useState<Profiles['type']>(null)
   const [avatar_url, setAvatarUrl] = useState<Profiles['avatar_url']>(null)
 
-  
-
   useEffect(() => {
     getProfile()
   }, [session, user, supabase])
 
-
-                                /** Profile related functions */
+  /** Profile related functions */
   async function getProfile() {
     try {
       setLoading(true)
@@ -37,7 +32,9 @@ export default function Account({ session }: { session: Session }) {
         .eq('id', user.id)
         .single()
 
-      if (error && status !== 406) { throw error }
+      if (error && status !== 406) {
+        throw error
+      }
 
       if (data) {
         setUsername(data.username)
@@ -57,7 +54,7 @@ export default function Account({ session }: { session: Session }) {
     username,
     website,
     avatar_url,
-    type
+    type,
   }: {
     username: Profiles['username']
     website: Profiles['website']
@@ -78,7 +75,9 @@ export default function Account({ session }: { session: Session }) {
       }
 
       let { error } = await supabase.from('profiles').upsert(updates)
-      if (error) { throw error } 
+      if (error) {
+        throw error
+      }
       alert('Profile updated!')
     } catch (error) {
       console.log(error)
@@ -87,11 +86,7 @@ export default function Account({ session }: { session: Session }) {
       setLoading(false)
     }
   }
-
-
-
- /** Event related functions */
-
+  
   return (
 
     <div className="form-widget">
@@ -105,12 +100,7 @@ export default function Account({ session }: { session: Session }) {
       />
       <div>
         <label htmlFor="email">Email</label>
-        <input 
-          id="email" 
-          type="text" 
-          value={session.user.email} 
-          disabled 
-        />
+        <input id="email" type="text" value={session.user.email} disabled />
       </div>
       <div>
         <label htmlFor="username">Username</label>
@@ -130,15 +120,10 @@ export default function Account({ session }: { session: Session }) {
           onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
-      
+
       <div>
         <label htmlFor="type">Type</label>
-        <input
-          id="type"
-          type="text"
-          value={type || ''}
-          onChange={(e) => setType(e.target.value)}
-        />
+        <input id="type" type="text" value={type || ''} onChange={(e) => setType(e.target.value)} />
       </div>
 
       <div>
@@ -150,22 +135,9 @@ export default function Account({ session }: { session: Session }) {
           {loading ? 'Loading ...' : 'Update'}
         </button>
       </div>
-
-
-      {/* <div>
-        <Link href="/home">
-          <button className="button block" >
-            Add event now
-          </button>
-        </Link>
-      </div> */}
-
-
       <div>
         <Link href="/Homepage">
-          <button className="button block" >
-            Go to homepage
-          </button>
+          <button className="button block">Go to homepage</button>
         </Link>
       </div>
 
