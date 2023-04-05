@@ -43,13 +43,13 @@ export interface Database {
       events: { //username, eventName, location, date, time, type
         Row: {
           id: string
-          updated_at?: string | null
-          org_name?: string | null
-          event_name?: string | null
-          event_flyer?: string | null
-          location?: string | null
-          event_time?: string | null
-          type?: string | null
+          updated_at: string | null
+          org_name: string | null
+          event_name: string | null
+          event_flyer: string | null
+          location: string | null
+          event_time: string | null
+          type: string | null 
         }
         Insert: {
           id: string
