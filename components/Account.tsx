@@ -94,8 +94,7 @@ export default function Account({ session }: { session: Session }) {
 
   return (
 
-    <div className="form-widget">     
-      <h3>Account</h3> 
+    <div className="form-widget">
       <Avatar
         uid={user!.id}
         url={avatar_url}
