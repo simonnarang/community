@@ -3,6 +3,7 @@ import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Account from '../components/Account'
 import Footer from '../components/Footer'
+import Homepage from './Homepage'
 
 const Home: NextPage = () => {
   const session = useSession()
@@ -25,8 +26,8 @@ const Home: NextPage = () => {
         </div>
       ) : (
         <>
-          <h3>Account</h3>
           <Account session={session} />
+          {/* <Homepage session={session} /> */}
         </>
       )}
 

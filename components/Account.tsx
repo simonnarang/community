@@ -90,10 +90,12 @@ export default function Account({ session }: { session: Session }) {
 
 
 
-                                 /** Event related functions */
+ /** Event related functions */
 
   return (
-    <div className="form-widget">
+
+    <div className="form-widget">     
+      <h3>Account</h3> 
       <Avatar
         uid={user!.id}
         url={avatar_url}
@@ -151,13 +153,13 @@ export default function Account({ session }: { session: Session }) {
       </div>
 
 
-      <div>
+      {/* <div>
         <Link href="/home">
           <button className="button block" >
             Add event now
           </button>
         </Link>
-      </div>
+      </div> */}
 
 
       <div>
