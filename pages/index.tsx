@@ -1,39 +1,37 @@
-import type { NextPage } from 'next'
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Account from '../components/Account'
-import Footer from '../components/Footer'
-import Homepage from './Homepage'
+import { Center } from "@mantine/core";
+import Link from "next/link";
 
-const Home: NextPage = () => {
-  const session = useSession()
-  const supabase = useSupabaseClient()
-
+export default function index() {
   return (
-    <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      {!session ? (
-        <div className="row">
-          <div className="col-6">
-            <h1 className="header">Welcome to CommUnity</h1>
-            <p className="">
-              Experience our Auth and Storage through a simple profile management example. Create a
-              user profile and upload an avatar image. Fast, simple, secure.
-            </p>
-          </div>
-          <div className="col-6 auth-widget">
-            <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="dark" />
-          </div>
-        </div>
-      ) : (
-        <>
-          <Account session={session} />
-          {/* <Homepage session={session} /> */}
-        </>
-      )}
+    <>
+    <div className="header">
+		<ul>
+			<li>
+				<a href="#">Home</a>
+			</li>
+			<li>
+				<a href="#">About</a>
+			</li>
+			<li>
+				<a href="#">Contact</a>
+			</li>
+			<li>
+				{/* <a href="#">Get Started</a> */}
+        <Link href="/login">
+        <button id="purple-landing-button">Get Started</button>
+      </Link>
+			</li>
 
-      <Footer />
+		</ul>
+		<h2>CommUnity</h2>
+		<p>A new  platform that redefines community engagement for college students, on and off campus.</p>
+    <div>
+      <Center>
+        <img src="/landing-image.png" alt="image" id="landing-image" width={300} />
+      </Center>
     </div>
+	</div>
+  </>
   )
 }
 
-export default Home
