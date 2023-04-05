@@ -86,10 +86,9 @@ export default function Account({ session }: { session: Session }) {
       setLoading(false)
     }
   }
-
-  /** Event related functions */
-
+  
   return (
+
     <div className="form-widget">
       <Avatar
         uid={user!.id}
@@ -136,13 +135,6 @@ export default function Account({ session }: { session: Session }) {
           {loading ? 'Loading ...' : 'Update'}
         </button>
       </div>
-
-      <div>
-        <Link href="/home">
-          <button className="button block">Add event now</button>
-        </Link>
-      </div>
-
       <div>
         <Link href="/Homepage">
           <button className="button block">Go to homepage</button>

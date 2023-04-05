@@ -32,22 +32,6 @@ export default function index() {
     </div>
 	</div>
   </>
-    // <>
-    //   <Header />
-    //   <div>
-    //     {/* centerred text */}
-    //     <h1 id="landing-text">A new  platform that redefines community engagement for college students, on and off campus.</h1>
-    //   </div>
-    //   <div align="center">
-    //     <img src="/landing-image.png" alt="image" width={600} />
-    //   </div>
-    //   <div>
-    //     <h3>
-    //       Maintain engagement within your own community by exploring what events CommUnity has to offer. Get Started by creating an account or logging in.
-    //     </h3>
-    //   </div>
-    //   <Footer />
-    // </>
   )
 }
 
