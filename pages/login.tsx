@@ -13,10 +13,9 @@ const Login: NextPage = () => {
       {!session ? (
         <div className="row">
           <div className="col-6">
-            <h1 className="header">Welcome to CommUnity</h1>
+            <h1 className="header-login">Welcome to CommUnity</h1>
             <p className="">
-              Experience our Auth and Storage through a simple profile management example. Create a
-              user profile and upload an avatar image. Fast, simple, secure.
+            A new  platform that redefines community engagement for college students, on and off campus.
             </p>
           </div>
           <div className="col-6 auth-widget">
