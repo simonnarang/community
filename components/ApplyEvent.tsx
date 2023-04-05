@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react"
 
-import { useUser, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
-
-import { Database } from '../utils/database.types'
-
-import { v4 as uuidv4 } from "uuid"
+import { useUser, useSession, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
+import Avatar from './Avatar'
 
 import Link from "next/link"
+import { v4 as uuidv4 } from "uuid"
 
+
+import { Database } from '../utils/database.types'
 type Events = Database['public']['Tables']['events']['Row']
+type Profiles = Database['public']['Tables']['profiles']['Row']
 
 
 /**
@@ -21,13 +22,20 @@ type Events = Database['public']['Tables']['events']['Row']
 export function ApplyEvent() {
   const supabase = useSupabaseClient<Database>()
   const user = useUser()
+  const session = useSession()
+
 
   const [org_name, setOrgName] = useState<Events['org_name']>(null)
   const [event_name, setEventName] = useState<Events['event_name']>(null)
   const [event_flyer, setEventFlyer] = useState<Events['event_flyer']>(null)
   const [location, setLocation] = useState<Events['location']>(null)
   const [event_time, setEventTime] = useState<Events['event_time']>(null)
-    
+
+  const [avatar_url, setAvatarUrl] = useState<Profiles['avatar_url']>(null) // TODO: change to Events["media_url"] 
+
+  useEffect(() => {
+    getEvent()
+  }, [session, user, supabase])
 
 
   async function getEvent() {
@@ -107,6 +115,14 @@ export function ApplyEvent() {
         </Link>
       </div>
       <div className="form-widget">
+          <Avatar
+            uid={user?.id || ""}
+            url={avatar_url}
+            size={150}
+            onUpload={(url) => {
+              setAvatarUrl(url)
+            }}
+          />
         
           <div>
             <label htmlFor="org_name">Organization's Name</label>
