@@ -32,6 +32,7 @@ const Login: NextPage = () => {
       )}
 
       <Footer />
+
     </div>
   )
 }
