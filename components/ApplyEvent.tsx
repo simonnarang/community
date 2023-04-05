@@ -117,7 +117,6 @@ export function ApplyEvent() {
               onChange={(e) => setOrgName(e.target.value)}
             />
           </div>
-
           <div>
             <label htmlFor="event_flyer">Event Flyer</label>
             <input
