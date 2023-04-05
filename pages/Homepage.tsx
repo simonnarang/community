@@ -91,7 +91,7 @@ export default function Homepage({ session }: { session: Session }){
   return (
     <>
       <div>
-        <Link href="/#">
+        <Link href="/login">
           <button className="button block" >
             Go to account 
           </button>

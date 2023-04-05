@@ -11,6 +11,7 @@ body {
   --custom-border: 1px solid #333;
   --custom-border-radius: 5px;
   --custom-spacing: 5px;
+  --custom-padding: 30px
 
   padding: 0;
   margin: 0;
@@ -291,6 +292,7 @@ button.primary,
   flex-flow: row;
   border-top: var(--custom-border);
   background-color: var(--custom-bg-color);
+  padding: 15px;
 }
 .footer div {
   padding: var(--custom-spacing);
@@ -442,3 +444,14 @@ button.primary,
   margin: 0;
 }
 
+#landing-logo {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.header {
+  border-bottom: var(--custom-border);
+}
