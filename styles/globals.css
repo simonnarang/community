@@ -448,10 +448,20 @@ button.primary,
   width: 100%;
   max-width: 300px;
   margin-bottom: 20px;
-  margin-left: 20px;
+  margin-left: 120px;
   margin-top: 20px;
+  margin-right: 50px;
+}
+
+#purple-landing-button {
+  background-color: rgb(98, 6, 184);
+  color: white;
+  float: right;
+  margin-top: 30px;
+  margin-right: 20px;
 }
 
 .header {
   border-bottom: var(--custom-border);
+  text-align: center;
 }

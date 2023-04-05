@@ -8,14 +8,21 @@ export default function LandingPage() {
   return (
     <>
       <Header />
-      <div className="flex justify-between">
-        <h1 className="header">Welcome to CommUnity</h1>
-        <p>
-          Maintain engagement within your own community
-          by exploring what events CommUnity has to offer!
-                </p>
+      {/* <div className="flex justify-between"> */}
+        <div>
+          <h1 className="header">Welcome to CommUnity!</h1>
+        </div>
+      {/* </div> */}
+      <div align="center">
+        <img src="/landing-image.png" alt="image" width={600} />
+      </div>
+      <div>
+        <h3 align="center">
+          Maintain engagement within your own community by exploring what events CommUnity has to offer!
+        </h3>
       </div>
       <Footer />
     </>
   )
 }
+

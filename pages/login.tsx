@@ -3,7 +3,6 @@ import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Account from '../components/Account'
 import Footer from '../components/Footer'
-import LandingPage from './LandingPage'
 
 const Login: NextPage = () => {
   const session = useSession()
