@@ -19,9 +19,7 @@ function MyApp({
       withNormalizeCSS
       theme={{
         colorScheme: 'dark',
-        headings: {
-          fontFamily: 'Roboto, sans-serif',
-        },
+        fontFamily: 'Space Grotesk, sans-serif',
       }}
     >
       <SessionContextProvider
