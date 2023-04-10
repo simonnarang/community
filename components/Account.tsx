@@ -136,7 +136,7 @@ export default function Account({ session }: { session: Session }) {
         </button>
       </div>
       <div>
-        <Link href="/homepage">
+        <Link href="/Homepage">
           <button className="button block">Go to homepage</button>
         </Link>
       </div>
