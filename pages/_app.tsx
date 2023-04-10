@@ -20,6 +20,10 @@ function MyApp({
       theme={{
         colorScheme: 'dark',
         fontFamily: 'Space Grotesk, sans-serif',
+        colors: {
+          brand: ['#6B00D7', '#6B00D7', '#6B00D7', '#6B00D7', '#6B00D7', '#6B00D7', '#6B00D7', '#6B00D7', '#6B00D7', '#6B00D7'],
+        },
+        primaryColor: 'brand',
       }}
     >
       <SessionContextProvider

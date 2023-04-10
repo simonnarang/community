@@ -14,15 +14,15 @@ export default function index() {
 	
 	return (
 		<>
-		<div className="header">
+		<div className="header" id="headerLanding">
 			<ul>
 				<li>
-					<a href="#">About</a>
+					<a href="https://snarang.notion.site/CommUnity-e44a3d0716384918873b9cb174bbecac">About</a>
 				</li>
 				<li>
-			<Link href="/login">
-			<button id="purple-landing-button">Get Started</button>
-		</Link>
+					<Link href="/login">
+					<button id="purple-landing-button">Get Started</button>
+					</Link>
 				</li>
 
 			</ul>

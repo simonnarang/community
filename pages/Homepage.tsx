@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useUser, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
 
+import { MdAccountBox } from 'react-icons/md'
+import { GrAdd }  from 'react-icons/gr'
+
 import Link from 'next/link'
 
 import { Database } from '../utils/database.types'
 import { Events, EventType } from '../utils/event.types'
 
 import EventFrame from '../components/EventFrame'
-import { Grid } from '@mantine/core'
+import { Button, Grid, Header, Text } from '@mantine/core'
 
 const blank_event = {
   id: '',
@@ -67,18 +70,28 @@ export default function Homepage({ session }: { session: Session }) {
 
   return (
     <>
-      <div>
-        <Link href="/profile">
-          <button className="button block">Go to account</button>
-        </Link>
-      </div>
-
+    <Header height={60} p="xs" className="header" id="headerHome">
+      {/* <Text>CommUnity</Text> */}
+      <ul>
+        <li>
+          <h1 id='logo'>CommUnity</h1>
+        </li>
+        <li>
       <div>
         <Link href="/addevent">
-          <button className="button block">Add event now</button>
+          <Button>📅 &nbsp; New Event</Button>
         </Link>
       </div>
-
+      </li>
+        <li>
+      <div>
+        <Link href="/profile">
+          <Button>💁 &nbsp; My Account</Button>
+        </Link>
+      </div>
+      </li>
+      </ul>
+      </Header>
       <Grid columns={4} style={{ padding: 10, border: 'grey' }}>
         {JSON.stringify(events) !== '[]'
           ? events.map((event: EventType, index: any) => {
