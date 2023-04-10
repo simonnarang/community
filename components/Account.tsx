@@ -4,6 +4,7 @@ import Avatar from './Avatar'
 import Link from 'next/link'
 
 import { Database } from '../utils/database.types'
+import { Button } from '@mantine/core'
 type Profiles = Database['public']['Tables']['profiles']['Row']
 
 export default function Account({ session }: { session: Session }) {
@@ -90,6 +91,11 @@ export default function Account({ session }: { session: Session }) {
   return (
 
     <div className="form-widget">
+            <div>
+        <a id="link" href="/Homepage">
+          ⬅️ &nbsp; Home
+        </a>
+      </div>
       <Avatar
         uid={user!.id}
         url={avatar_url}
@@ -127,24 +133,17 @@ export default function Account({ session }: { session: Session }) {
       </div>
 
       <div>
-        <button
-          className="button primary block"
+        <Button
           onClick={() => updateProfile({ username, website, avatar_url, type })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}
-        </button>
+        </Button>
       </div>
       <div>
-        <Link href="/Homepage">
-          <button className="button block">Go to homepage</button>
-        </Link>
-      </div>
-
-      <div>
-        <button className="button block" onClick={() => supabase.auth.signOut()}>
+        <Button onClick={() => supabase.auth.signOut()}>
           Sign Out
-        </button>
+        </Button>
       </div>
     </div>
   )

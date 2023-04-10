@@ -494,6 +494,7 @@ body {
 
 #logo {
   margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 #headerHome {
@@ -507,7 +508,7 @@ body {
 .header ul {
 	height: 50px;
 	display: flex;
-	justify-content: flex-start;;
+	justify-content: space-between;;
 }
 .header ul li {
 	display: inline-block;
@@ -525,6 +526,7 @@ body {
 	background: #fff;
 	color: #000;
 }
+
 .header h2 {
 	text-align: center;
 	color: #fff;
@@ -558,4 +560,16 @@ body {
 
 .box {
   background-image: url('https://i.postimg.cc/vHXWB9DN/1.png');
+}
+
+.headerBtn {
+  margin-left: 10px;
+}
+
+.account {
+  padding: 40px;
+}
+
+#link {
+  text-decoration: none;
 }

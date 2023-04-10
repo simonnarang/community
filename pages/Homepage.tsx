@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useUser, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
-
-import { MdAccountBox } from 'react-icons/md'
-import { GrAdd }  from 'react-icons/gr'
-
 import Link from 'next/link'
-
 import { Database } from '../utils/database.types'
-import { Events, EventType } from '../utils/event.types'
-
+import { EventType } from '../utils/event.types'
 import EventFrame from '../components/EventFrame'
-import { Button, Grid, Header, Text } from '@mantine/core'
+import { Button, Grid, Header } from '@mantine/core'
 
 const blank_event = {
   id: '',
@@ -81,22 +75,18 @@ export default function Homepage({ session }: { session: Session }) {
         <Link href="/addevent">
           <Button>📅 &nbsp; New Event</Button>
         </Link>
-      </div>
-      </li>
-        <li>
-      <div>
         <Link href="/profile">
-          <Button>💁 &nbsp; My Account</Button>
+          <Button className="headerBtn">💁 &nbsp; Profile</Button>
         </Link>
       </div>
       </li>
       </ul>
       </Header>
-      <Grid columns={4} style={{ padding: 10, border: 'grey' }}>
+      <Grid style={{ padding: 10, border: 'grey' }}>
         {JSON.stringify(events) !== '[]'
           ? events.map((event: EventType, index: any) => {
               return event.event_name !== null ? (
-                <Grid.Col span={1} style={{ width: 100 }} key={index}>
+                <Grid.Col md={6} lg={3} key={index}>
                   <EventFrame eventDetails={event} />
                 </Grid.Col>
               ) : (
