@@ -105,7 +105,7 @@ export function ApplyEvent() {
   return (
     <>
       <div>
-        <Link href="/Homepage">
+        <Link href="/homepage">
           <button className="button block">Go back to home</button>
         </Link>
       </div>

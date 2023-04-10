@@ -92,7 +92,7 @@ export default function Account({ session }: { session: Session }) {
 
     <div className="form-widget">
             <div>
-        <a id="link" href="/Homepage">
+        <a id="link" href="/homepage">
           ⬅️ &nbsp; Home
         </a>
       </div>

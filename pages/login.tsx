@@ -11,7 +11,7 @@ const Login: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (session) router.push('/Homepage')
+    if (session) router.push('/homepage')
   })
 
   return (
