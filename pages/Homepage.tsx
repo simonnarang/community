@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useUser, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
+import { useUser, useSupabaseClient, Session, useSession } from '@supabase/auth-helpers-react'
 
 import Link from 'next/link'
 
 import { Database } from '../utils/database.types'
-import { Events, EventType } from '../utils/event.types'
+import { EventType } from '../utils/event.types'
 
 import EventFrame from '../components/EventFrame'
 import { Grid } from '@mantine/core'
+import { useRouter } from 'next/router'
 
 const blank_event = {
   id: '',
@@ -19,9 +20,11 @@ const blank_event = {
   type: '',
 }
 
-export default function Homepage({ session }: { session: Session }) {
+export default function Homepage() {
   const supabase = useSupabaseClient<Database>()
   const user = useUser()
+  const router = useRouter()
+  const session = useSession()
 
   const [events, setEvents] = useState<EventType[]>([blank_event])
 
@@ -63,6 +66,9 @@ export default function Homepage({ session }: { session: Session }) {
 
   useEffect(() => {
     retrieveEvents()
+    if (!session) {
+      router.push('/login')
+    }
   }, [session, user, supabase])
 
   return (
