@@ -9,7 +9,7 @@ export default function index() {
 	const router = useRouter();
 
 	useEffect(() => {
-        if (!session) router.push('/login')
+        if (session) router.push('/homepage')
     })
 	
 	return (
