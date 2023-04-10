@@ -7,16 +7,9 @@ export default function index() {
     <div className="header">
 		<ul>
 			<li>
-				<a href="#">Home</a>
-			</li>
-			<li>
 				<a href="#">About</a>
 			</li>
 			<li>
-				<a href="#">Contact</a>
-			</li>
-			<li>
-				{/* <a href="#">Get Started</a> */}
         <Link href="/login">
         <button id="purple-landing-button">Get Started</button>
       </Link>

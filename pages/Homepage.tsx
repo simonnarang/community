@@ -68,13 +68,13 @@ export default function Homepage({ session }: { session: Session }) {
   return (
     <>
       <div>
-        <Link href="/login">
+        <Link href="/profile">
           <button className="button block">Go to account</button>
         </Link>
       </div>
 
       <div>
-        <Link href="/AddEvent">
+        <Link href="/addevent">
           <button className="button block">Add event now</button>
         </Link>
       </div>

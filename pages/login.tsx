@@ -1,12 +1,18 @@
 import type { NextPage } from 'next'
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Account from '../components/Account'
 import Footer from '../components/Footer'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 const Login: NextPage = () => {
   const session = useSession()
   const supabase = useSupabaseClient()
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session) router.push('/homepage')
+  })
 
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
@@ -23,12 +29,8 @@ const Login: NextPage = () => {
           </div>
         </div>
       ) : (
-        <>
-          <h3>Account</h3>
-          <Account session={session} />
-        </>
+        <></>
       )}
-
       <Footer />
     </div>
   )
