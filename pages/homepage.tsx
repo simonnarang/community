@@ -82,7 +82,7 @@ export default function Homepage({ session }: { session: Session }) {
       </li>
       </ul>
       </Header>
-      <Grid style={{ padding: 10, border: 'grey' }}>
+      <Grid style={{ padding: 50 }}>
         {JSON.stringify(events) !== '[]'
           ? events.map((event: EventType, index: any) => {
               return event.event_name !== null ? (

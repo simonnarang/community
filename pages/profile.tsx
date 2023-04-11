@@ -12,7 +12,7 @@ const Profile: NextPage = () => {
         if (!session) router.push('/login')
     })
     return (
-        <div className="account" >
+        <div className="page" >
         {!session ? (<></>) : <Account session={session} />}
         </div>
     )

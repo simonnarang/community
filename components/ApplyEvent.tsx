@@ -27,7 +27,6 @@ export function ApplyEvent() {
   const [event_flyer, setEventFlyer] = useState<Events['event_flyer']>(null)
   const [location, setLocation] = useState<Events['location']>(null)
   const [event_time, setEventTime] = useState<Events['event_time']>(null)
-
   const [avatar_url, setAvatarUrl] = useState<Profiles['avatar_url']>(null) // TODO: change to Events["media_url"]
 
   useEffect(() => {
@@ -37,24 +36,6 @@ export function ApplyEvent() {
   async function getEvent() {
     try {
       if (!user) throw new Error('No user')
-
-      let { data, error, status } = await supabase
-        .from('events')
-        .select(`username, org_name, event_name, event_flyer, location, event_time, type`)
-        .eq('id', user.id)
-        .single()
-
-      if (error && status !== 406) {
-        throw new Error(error.message)
-      }
-
-      if (data) {
-        setOrgName(data.org_name)
-        setEventName(data.event_name)
-        setEventFlyer(data.event_flyer)
-        setLocation(data.location)
-        setEventTime(data.event_time)
-      }
     } catch (error) {
       alert('Error loading event data!')
     }
@@ -95,10 +76,10 @@ export function ApplyEvent() {
         throw error
       }
 
-      alert('Event updated!')
+      alert('Event added')
     } catch (error) {
       console.log(error)
-      alert('Error updating the event data!')
+      alert('Error adding event')
     }
   }
 
@@ -180,7 +161,7 @@ export function ApplyEvent() {
             className="button block"
             onClick={() => addEvent({ org_name, event_name, event_flyer, location, event_time })}
           >
-            Update
+            Publish New Event
           </button>
         </div>
       </div>
