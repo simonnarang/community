@@ -10,7 +10,7 @@ export default function EventFrame(props: any) {
       <Card shadow="sm" padding="lg" radius="md" withBorder>
         <Card.Section>
           <Image
-            src={faker.image.imageUrl(undefined, undefined, 'cats', true)}
+            src={faker.image.imageUrl(undefined, undefined, 'johnshopkins', true)}
             height={160}
             alt="Norway"
           />
