@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useUser, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
 import Link from 'next/link'
 import { Database } from '../utils/database.types'
-import { EventType } from '../utils/event.types'
+import { Events, EventType } from '../utils/event.types'
 import EventFrame from '../components/EventFrame'
 import { Button, Grid, Header } from '@mantine/core'
 

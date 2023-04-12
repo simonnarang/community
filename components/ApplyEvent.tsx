@@ -72,6 +72,7 @@ export function ApplyEvent() {
         location,
         event_time: time,
         updated_at: new Date().toISOString(),
+        event_avatar
       }
 
       let { data, error } = await supabase.from('events').insert(updates)

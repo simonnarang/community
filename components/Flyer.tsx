@@ -45,14 +45,15 @@ export default function Flyer({
 
       const file = event.target.files[0]
       const fileExt = file.name.split('.').pop()
-      const fileName = `${uid}.${fileExt}`
+      const fileName = `${(Math.random() + 1).toString(36).substring(7)}.${fileExt}`
       const filePath = `${fileName}`
 
       let { error: uploadError } = await supabase.storage
         .from('flyers')
-        .upload(filePath, file, { upsert: true })
+        .upload(filePath, file, { upsert: false })
 
       if (uploadError) {
+        console.log("This ran")
         throw uploadError
       }
 
