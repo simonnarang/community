@@ -39,7 +39,6 @@ export default function EventFrame(props: any) {
         opened={modalOpen}
         onClose={handleClose}
         title="Event Details"
-        hideOnOutsideClick
       >
         <p>pop-up screen.</p>
         <Button onClick={handleClose} mr="md">Register</Button>
