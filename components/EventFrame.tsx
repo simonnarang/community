@@ -30,7 +30,7 @@ export default function EventFrame(props: any) {
         <Text size="sm" color="dimmed"></Text>
 
         <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={handleOpen}>
-          View event now!
+          Register {eventDetails.event_time}
         </Button>
       </Card>
 
