@@ -17,7 +17,6 @@ export default function EventFrame(props: any) {
           <Image
             src={ eventDetails.event_flyer ? eventDetails.event_flyer : faker.image.imageUrl(undefined, undefined, 'johnshopkins', true) }
             height={160}
-            alt="Norway"
           />
         </Card.Section>
 
