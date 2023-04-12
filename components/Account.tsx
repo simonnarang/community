@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
+import { MultiSelect } from '@mantine/core';
 import Avatar from './Avatar'
 import Link from 'next/link'
 
@@ -87,6 +88,7 @@ export default function Account({ session }: { session: Session }) {
       setLoading(false)
     }
   }
+
   
   return (
 
@@ -129,21 +131,26 @@ export default function Account({ session }: { session: Session }) {
 
       <div>
         <label htmlFor="type">Type</label>
-        <input id="type" type="text" value={type || ''} onChange={(e) => setType(e.target.value)} />
+        {/* <input id="type" type="text" value={type || ''} onChange={(e) => setType(e.target.value)} /> */}
+        <MultiSelect data= {[{value: 'student', label: "Student"}, {value: 'organizer', label: "Organizer"}] } placeholder = "pick your type" onChange = {(value)=>setType(value.toString())}/>
       </div>
 
+  <div style = {{display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: 30}} >
       <div>
         <Button
           onClick={() => updateProfile({ username, website, avatar_url, type })}
           disabled={loading}
+          style = {{marginRight: 30}}
         >
           {loading ? 'Loading ...' : 'Update'}
         </Button>
       </div>
+
       <div>
         <Button onClick={() => supabase.auth.signOut()}>
           Sign Out
         </Button>
+      </div>
       </div>
     </div>
   )
