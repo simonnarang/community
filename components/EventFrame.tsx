@@ -15,7 +15,7 @@ export default function EventFrame(props: any) {
       <Card shadow="sm" padding="lg" radius="md" withBorder>
         <Card.Section>
           <Image
-            src={faker.image.imageUrl(undefined, undefined, 'johnshopkins', true)}
+            src={ eventDetails.event_flyer ? eventDetails.event_flyer : faker.image.imageUrl(undefined, undefined, 'johnshopkins', true) }
             height={160}
             alt="Norway"
           />
@@ -39,7 +39,6 @@ export default function EventFrame(props: any) {
         opened={modalOpen}
         onClose={handleClose}
         title="Event Details"
-        hideOnOutsideClick
       >
         <p>pop-up screen.</p>
         <Button onClick={handleClose} mr="md">Register</Button>
