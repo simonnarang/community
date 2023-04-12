@@ -17,6 +17,7 @@ export default function Account({ session }: { session: Session }) {
   const [website, setWebsite] = useState<Profiles['website']>(null)
   const [type, setType] = useState<Profiles['type']>(null)
   const [avatar_url, setAvatarUrl] = useState<Profiles['avatar_url']>(null)
+  const [selectedType, setSelectedType] = useState([""]);
 
   useEffect(() => {
     getProfile()
@@ -43,6 +44,15 @@ export default function Account({ session }: { session: Session }) {
         setWebsite(data.website)
         setType(data.type)
         setAvatarUrl(data.avatar_url)
+
+        if (data.type?.includes(",")) {
+          const [a, b] = data.type.split(",")
+          setSelectedType([a, b]);
+        } else if (data.type) {
+          setSelectedType([data.type])
+        }
+
+        
       }
     } catch (error) {
       alert('Error loading user data!')
@@ -131,8 +141,7 @@ export default function Account({ session }: { session: Session }) {
 
       <div>
         <label htmlFor="type">Type</label>
-        {/* <input id="type" type="text" value={type || ''} onChange={(e) => setType(e.target.value)} /> */}
-        <MultiSelect data= {[{value: 'student', label: "Student"}, {value: 'organizer', label: "Organizer"}] } placeholder = "pick your type" onChange = {(value)=>setType(value.toString())}/>
+        <MultiSelect data= {[{value: 'student', label: "Student"}, {value: 'organizer', label: "Organizer"}] } value={selectedType} onChange = {(value)=> {setSelectedType(value); setType(value.toString())}} />
       </div>
 
   <div style = {{display: "flex", flexDirection: "row", justifyContent: "flex-end", marginTop: 30}} >
