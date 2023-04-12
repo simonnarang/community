@@ -14,6 +14,7 @@ const blank_event = {
   location: '',
   event_time: '',
   type: '',
+  event_avatar: ''
 }
 
 export default function Homepage({ session }: { session: Session }) {
@@ -36,7 +37,7 @@ export default function Homepage({ session }: { session: Session }) {
         let array: EventType[] = []
 
         data.map((event) => {
-          const { id, org_name, event_name, event_flyer, location, event_time, type } = event
+          const { id, org_name, event_name, event_flyer, location, event_time, type, event_avatar} = event
           let receivedData: EventType = {
             id,
             org_name,
@@ -45,6 +46,7 @@ export default function Homepage({ session }: { session: Session }) {
             location,
             event_time,
             type,
+            event_avatar
           }
           array.push(receivedData)
         })

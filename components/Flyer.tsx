@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { Database } from '../utils/database.types'
-type Events = Database['public']['Tables']['events']['Row']
 
+import { Events } from '../utils/event.types'
 export default function Flyer({
   uid,
   url,
@@ -10,12 +10,12 @@ export default function Flyer({
   onUpload,
 }: {
   uid: string
-  url: Events['event_flyer']
+  url: Events['event_avatar']
   size: number
   onUpload: (url: string) => void
 }) {
   const supabase = useSupabaseClient<Database>()
-  const [flyer_url, setFlyer] = useState<Events['event_flyer']>(null)
+  const [flyer_url, setFlyer] = useState<Events['event_avatar']>(null)
   const [uploading, setUploading] = useState(false)
 
   useEffect(() => {

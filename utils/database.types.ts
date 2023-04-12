@@ -49,7 +49,8 @@ export interface Database {
           event_flyer: string | null
           location: string | null
           event_time: string | null
-          type: string | null 
+          type: string | null,
+          event_avatar: string | null
         }
         Insert: {
           id: string

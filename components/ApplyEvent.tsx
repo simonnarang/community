@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react'
 import { useUser, useSession, useSupabaseClient, Session } from '@supabase/auth-helpers-react'
 import Avatar from './Avatar'
 
+import Flyer from './Flyer'
 import Link from 'next/link'
 import { v4 as uuidv4 } from 'uuid'
 
 import { Database } from '../utils/database.types'
-type Events = Database['public']['Tables']['events']['Row']
-type Profiles = Database['public']['Tables']['profiles']['Row']
+import { Events } from '../utils/event.types'
 
 /**
  * TODOs
@@ -27,7 +27,7 @@ export function ApplyEvent() {
   const [event_flyer, setEventFlyer] = useState<Events['event_flyer']>(null)
   const [location, setLocation] = useState<Events['location']>(null)
   const [event_time, setEventTime] = useState<Events['event_time']>(null)
-  const [avatar_url, setAvatarUrl] = useState<Profiles['avatar_url']>(null) // TODO: change to Events["media_url"]
+  const [eventAvatarUrl, setEventAvatarUrl] = useState<Events['event_avatar']>(null) // TODO: change to Events["media_url"]
 
   useEffect(() => {
     getEvent()
@@ -47,12 +47,14 @@ export function ApplyEvent() {
     event_flyer,
     location,
     event_time,
+    event_avatar
   }: {
     org_name: Events['org_name']
     event_name: Events['event_name']
     event_flyer: Events['event_flyer']
     location: Events['location']
     event_time: Events['event_time']
+    event_avatar: Events['event_avatar']
   }) {
     try {
       if (!user) throw new Error('No user')
@@ -61,6 +63,7 @@ export function ApplyEvent() {
       if (event_time) {
         time = event_time
       }
+
       const updates = {
         id: uuidv4(),
         org_name,
@@ -91,12 +94,12 @@ export function ApplyEvent() {
         </Link>
       </div>
       <div className="form-widget">
-        <Avatar
+        <Flyer
           uid={user?.id || ''}
-          url={avatar_url}
+          url={eventAvatarUrl}
           size={150}
           onUpload={(url) => {
-            setAvatarUrl(url)
+            setEventAvatarUrl(url)
           }}
         />
 
@@ -159,7 +162,7 @@ export function ApplyEvent() {
         <div>
           <button
             className="button block"
-            onClick={() => addEvent({ org_name, event_name, event_flyer, location, event_time })}
+            onClick={() => addEvent({ org_name, event_name, event_flyer, location, event_time, event_avatar: eventAvatarUrl})}
           >
             Publish New Event
           </button>
