@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Database } from '../utils/database.types'
 import { Events, EventType } from '../utils/event.types'
 import EventFrame from '../components/EventFrame'
-import { Button, Grid, Header } from '@mantine/core'
+import { AppShell, Button, Grid, Header } from '@mantine/core'
 
 const blank_event = {
   id: '',
@@ -65,9 +65,9 @@ export default function Homepage({ session }: { session: Session }) {
   }, [session, user, supabase])
 
   return (
-    <>
-    <Header height={60} p="xs" className="header" id="headerHome">
-      {/* <Text>CommUnity</Text> */}
+
+    <AppShell header={      
+      <Header height={60} p="xs" className="header" id="headerHome">
       <ul>
         <li>
           <h1 id='logo'>CommUnity</h1>
@@ -84,7 +84,8 @@ export default function Homepage({ session }: { session: Session }) {
       </li>
       </ul>
       </Header>
-      <Grid style={{ padding: 50 }}>
+  }>
+          <Grid style={{ padding: 50 }}>
         {JSON.stringify(events) !== '[]'
           ? events.map((event: EventType, index: any) => {
               return event.event_name !== null ? (
@@ -97,6 +98,7 @@ export default function Homepage({ session }: { session: Session }) {
             })
           : 'No events!'}
       </Grid>
-    </>
+
+    </AppShell>
   )
 }
