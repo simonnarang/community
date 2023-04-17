@@ -7,7 +7,8 @@ from selenium.webdriver.common.by import By
 df = pd.DataFrame(columns=['Event','Date'])
 # chromedriver_linux64/
 driver = webdriver.Chrome('./chromedriver') # TODO: change to utils/chromedriver or ./chromedriver
-driver.get('https://jhu.campusgroups.com/events?from_date=15+Apr+2023&to_date=19+Apr+2023')
+driver.get('https://jhu.campusgroups.com/events?from_date=15+Apr+2023&to_date=19+Apr+2023') # TODO: figure out how to handle authentication, if needed
+
 
 time.sleep(7)
 # events = driver.find_elements(By.XPATH,value='//h3[@class=header-cg--h4]') # TODO: figure out what name to grab event names by
