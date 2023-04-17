@@ -75,6 +75,26 @@ export interface Database {
           type?: string | null
         }
       }
+      registration: {
+        Row: {
+          id: string
+          user_id: string
+          event_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          id: string
+          user_id: string
+          event_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          event_id?: string
+          updated_at?: string | null
+        }
+      }
     }
     Views: {
       [_ in never]: never

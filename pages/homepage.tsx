@@ -6,6 +6,7 @@ import { Events, EventType } from '../utils/event.types'
 import EventFrame from '../components/EventFrame'
 import { Button, Grid, Header } from '@mantine/core'
 
+
 const blank_event = {
   id: '',
   org_name: '',
@@ -19,6 +20,7 @@ const blank_event = {
 
 export default function Homepage({ session }: { session: Session }) {
   const supabase = useSupabaseClient<Database>()
+
   const user = useUser()
 
   const [events, setEvents] = useState<EventType[]>([blank_event])
@@ -59,7 +61,7 @@ export default function Homepage({ session }: { session: Session }) {
       }
     }
   }
-
+  
   useEffect(() => {
     retrieveEvents()
   }, [session, user, supabase])
