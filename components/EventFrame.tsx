@@ -40,6 +40,9 @@ export default function EventFrame(props: any) {
 
   const handleOpen = () => setModalOpen(true)
   const handleClose = () => setModalOpen(false)
+  const handleRegisteration = () => {
+    setModalOpen(false)
+  }
   const testUrl = faker.image.imageUrl(undefined, undefined, 'johnshopkins', true)
   if (dateTimeString) {
     ;[dateString, timeString] = dateTimeString?.split('T')
@@ -50,7 +53,9 @@ export default function EventFrame(props: any) {
     let ampm = hour >= 12 ? 'PM' : 'AM'
     hour %= 12
     hour = hour ? hour : 12
-    time12 = `${hour}:${minute} ${ampm}`
+    let paddedMinute = minute.toString().padStart(2, '0');
+    time12 = `${hour}:${paddedMinute} ${ampm}`
+
   }
 
   return (
@@ -118,12 +123,15 @@ export default function EventFrame(props: any) {
             </Badge>
             <div style={{ marginLeft: 80 }}>{eventDetails.location}</div>
           </div>
-          {/* <Badge color="yellow" radius="xs" w={100} variant = "light" style={{marginBottom: 10}}>
-              Description
-           </Badge> */}
+
+          {/*Attendee list*/}
+          <Badge color="yellow" radius="xs" w={100} variant = "light" style={{marginBottom: 10}}>
+              Attendees
+           </Badge>
+           
         </div>
 
-        <Button onClick={handleClose} mr="md" style={{ marginTop: 20 }}>
+        <Button onClick={handleRegisteration} mr="md" style={{ marginTop: 20 }}>
           Register
         </Button>
       </Modal>

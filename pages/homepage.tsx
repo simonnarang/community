@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Database } from '../utils/database.types'
 import { Events, EventType } from '../utils/event.types'
 import EventFrame from '../components/EventFrame'
-import { AppShell, Button, Grid, Header } from '@mantine/core'
+import { AppShell, Button, Grid, Header, MultiSelect } from '@mantine/core'
 
 const blank_event = {
   id: '',
@@ -22,12 +22,17 @@ export default function Homepage({ session }: { session: Session }) {
   const user = useUser()
 
   const [events, setEvents] = useState<EventType[]>([blank_event])
+  const [orderBy, setOrderBy] = useState<Events['event_name']>("")
 
   const retrieveEvents = async () => {
     try {
       if (!user) throw new Error('No user')
 
-      let { data, error, status } = await supabase.from('events').select()
+      let { data, error, status } = await supabase
+      .from('events')
+      .select()
+      .order('event_time', {ascending: true})
+      // TODO: throws error when orderBy is put in, need to fix
 
       if (error && status !== 406) {
         throw error
@@ -62,7 +67,7 @@ export default function Homepage({ session }: { session: Session }) {
 
   useEffect(() => {
     retrieveEvents()
-  }, [session, user, supabase])
+  }, [session, user, supabase, orderBy])
 
   return (
 
@@ -74,6 +79,9 @@ export default function Homepage({ session }: { session: Session }) {
         </li>
         <li>
       <div>
+        <Button className="headerBtn" onClick={() => setOrderBy('event_time')}>
+        ⬇️ &nbsp; Sort by Date
+        </Button>
         <Link href="/addevent">
           <Button>📅 &nbsp; New Event</Button>
         </Link>
@@ -87,9 +95,9 @@ export default function Homepage({ session }: { session: Session }) {
   }>
           <Grid style={{ padding: 50 }}>
         {JSON.stringify(events) !== '[]'
-          ? events.map((event: EventType, index: any) => {
+          ? events.map((event: EventType, index: any, sort: any) => {
               return event.event_name !== null ? (
-                <Grid.Col md={6} lg={3} key={index}>
+                <Grid.Col md={6} lg={3}>
                   <EventFrame eventDetails={event} />
                 </Grid.Col>
               ) : (
