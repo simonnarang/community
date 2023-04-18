@@ -259,6 +259,31 @@ button.primary,
   border: 1px solid var(--custom-color-brand);
 }
 
+/* DropDown */
+.dropdown {
+  position: absolute;
+  top: 38px;
+  left: -1px;
+  border: var(--custom-color-brand);
+  background-color: var(--custom-color-brand);
+  border-radius: var(--custom-border-radius);
+  padding: 0;
+  text-align: center;
+}
+.dropdown > p {
+  margin: 0;
+  padding: 0.375rem 0.88rem;
+  border-bottom: 1px var(--custom-border);
+  min-width: 140px;
+}
+.dropdown > p:hover {
+  color: #fff;
+  background-color: var(--custom-color-brand);
+}
+.dropdown > p:last-child {
+  border-bottom: 0 none;
+}
+
 /* Widgets */
 
 .card {

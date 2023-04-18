@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Database } from '../utils/database.types'
 import { Events, EventType } from '../utils/event.types'
 import EventFrame from '../components/EventFrame'
+import DropDown from '../components/DropDown'
 import { AppShell, Button, Grid, Header, MultiSelect } from '@mantine/core'
 
 
@@ -24,7 +25,9 @@ export default function Homepage({ session }: { session: Session }) {
   const user = useUser()
 
   const [events, setEvents] = useState<EventType[]>([blank_event])
-  const [orderBy, setOrderBy] = useState<Events['event_name']>("")
+  const [orderBy, setOrderBy] = useState<string>("")
+  const [showDropDown, setShowDropDown] = useState<boolean>(false)
+  const eventSort = () => { return['event_name', 'event_date', 'location'] }
 
   const retrieveEvents = async () => {
     try {
@@ -33,8 +36,7 @@ export default function Homepage({ session }: { session: Session }) {
       let { data, error, status } = await supabase
       .from('events')
       .select()
-      .order('event_time', {ascending: true})
-      // TODO: throws error when orderBy is put in, need to fix
+      .order(orderBy)
 
       if (error && status !== 406) {
         throw error
@@ -58,14 +60,31 @@ export default function Homepage({ session }: { session: Session }) {
           array.push(receivedData)
         })
         setEvents(array)
+        setOrderBy(orderBy)
       }
     } catch (error: any) {
       // TODO: add more
       if (error.message !== 'No user') {
         alert('Error, other than retrieving User, loading event data!')
+        /* TODO: Throwing this error but you're still able to add events 
+            and whatnot. I think the error is something with the sort method
+            or dropdown, but i'm going to aim to have it fixed by 4/19
+        */
       }
     }
   }
+
+
+  const toggleDropDown = () => {
+    setShowDropDown(!showDropDown);
+    };
+    
+    // hides dropdown menu if space is clicked outside of menu
+    const dismissHandler = (event: React.FocusEvent<HTMLButtonElement>): void => {
+    if (event.currentTarget === event.target) {
+      setShowDropDown(false);
+    }
+    };
   
   useEffect(() => {
     retrieveEvents()
@@ -84,6 +103,28 @@ export default function Homepage({ session }: { session: Session }) {
         <Button className="headerBtn" onClick={() => setOrderBy('event_time')}>
         ⬇️ &nbsp; Sort by Date
         </Button>
+
+        <Button
+        className={showDropDown ? "active" : undefined}
+        onClick={(): void => toggleDropDown()}
+        onBlur={(e: React.FocusEvent<HTMLButtonElement>): void =>
+          dismissHandler(e)
+        }
+        >
+        <div>⬇️ &nbsp; Sort</div>
+        {/**{orderBy ? "Sorted by: " + orderBy : "Sort by..."}*/}
+        
+        {showDropDown && (
+        <DropDown
+            options={eventSort()}
+            showDropDown={false}
+            toggleDropDown={(): void => toggleDropDown()}
+            optionSelection={setOrderBy}
+          />
+        )}
+        </Button>
+
+
         <Link href="/addevent">
           <Button>📅 &nbsp; New Event</Button>
         </Link>
