@@ -100,10 +100,6 @@ export default function Homepage({ session }: { session: Session }) {
         </li>
         <li>
       <div>
-        <Button className="headerBtn" onClick={() => setOrderBy('event_time')}>
-        ⬇️ &nbsp; Sort by Date
-        </Button>
-
         <Button
         className={showDropDown ? "active" : undefined}
         onClick={(): void => toggleDropDown()}
