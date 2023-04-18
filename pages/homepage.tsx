@@ -25,7 +25,7 @@ export default function Homepage({ session }: { session: Session }) {
   const user = useUser()
 
   const [events, setEvents] = useState<EventType[]>([blank_event])
-  const [orderBy, setOrderBy] = useState<string>("")
+  const [orderBy, setOrderBy] = useState<string>("event_name")
   const [showDropDown, setShowDropDown] = useState<boolean>(false)
   const eventSort = () => { return['event_name', 'event_date', 'location'] }
 
