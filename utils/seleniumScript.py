@@ -16,7 +16,7 @@ CHROME_DRIVER_SERVICE = Service(CHROME_DRIVER_PATH)
 OPTION = webdriver.ChromeOptions()
 
 # SCRAPE_SITE_URL = 'https://jhu.campusgroups.com/events?from_date=15+Apr+2023&to_date=19+Apr+2023'  # Sai's test url
-SCRAPE_SITE_URL = 'https://jhu.campusgroups.com/ARC/rsvp_boot?id=1932652'  # My test url
+SCRAPE_SITE_URL = 'https://jhu.campusgroups.com/events?from_date=18+Apr+2023&to_date=19+Apr+2023'  # My test url
 
 '''
 TODO: create master dataframe based on these premises:
@@ -45,14 +45,22 @@ time.sleep(7)  # TODO: figure out what this is for
 
 # TODO: figure out what name to grab event names by
 ''' Pull event names from event page to RVSP '''
-events = driver.find_elements(By.XPATH, value='//h1[@class="rsvp__event-name"]')  # Try w/ XPath elements
-
+events = driver.find_elements(By.XPATH, value='//h3[@class="media-heading header-cg--h4"]')  # Try w/ XPath elements
+# organizers = driver.find_elements(By.XPATH, value='//p[@class="rsvp__event-org"]')
 print(events)
+# print(organizers)
+
+# Added organizer loop but doesn't put in array
+# for i in range(len(organizers)):
+#       print("Organizer loop to extract text running!")
+#       currOrganizer = organizers[i].text
+#       print("Organizer" + str(i) + " Text: " + currOrganizer)
 
 events_list = []
 for i in range(len(events)):
     print("Event loop to extract text running!")
     currEvent = events[i].text
+    currEvent = currEvent[:-6]
     print("Event" + str(i) + " Text: " + currEvent)
     events_list.append(currEvent)  # TODO: figure out if .text is an attribute of a h# object
 
