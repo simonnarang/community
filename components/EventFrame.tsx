@@ -9,18 +9,6 @@ import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { Database } from '../utils/database.types'
 import { Registration } from '../utils/registration.types'
 
-// import { createClient } from '@supabase/supabase-js';
-// import { config } from 'dotenv';
-
-// Load environment variables
-// config({ path: '.env.local' });
-
-
-
-// const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-// const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-
 
 export default function EventFrame(props: any) {
   const supabase = useSupabaseClient()
@@ -39,34 +27,6 @@ export default function EventFrame(props: any) {
   let time12 = ''
 
   const [userNames, setUserNames] = useState<string[]>([]);
-
-//     // Check if the environment variables are defined
-// if (!supabaseUrl || !supabaseKey) {
-//   console.error('Supabase URL or API key not defined');
-//   process.exit(1);
-// }
-  
-// const attend = createClient(supabaseUrl, supabaseKey);
-
-//   const register = async (userId: string, eventId: string) => {
-//     const { data, error } = await supabase
-//       .from('registrations')
-//       .insert({ event_id: eventId, user_id: userId });
-  
-//     if (error) {
-//       console.error(error);
-//       return;
-//     }
-  
-//     console.log('Registration successful!');
-//   };
-
-  
-//   const handleRegister = () => {
-//     register('Event_ID_HERE', 'User_ID_HERE');
-//     handleOpen()
-//   };
-
 
   useEffect(() => {
     async function convertAvatarToUrl(path: string | null) {
@@ -93,7 +53,6 @@ export default function EventFrame(props: any) {
   }
   const handleClose = () => setModalOpen(false)
   const handleRegisteration = () => {
-    // addRegistration({ event_id, user_id})
     addRegistration({event_id: eventDetails.id ?? '||', user_id: user?.id  ?? '||' })
     setModalOpen(false)
   }
@@ -112,9 +71,6 @@ export default function EventFrame(props: any) {
     time12 = `${hour}:${paddedMinute} ${ampm}`
 
   }
-
-  // FIX?
-
 
 async function addRegistration({
   user_id,
@@ -174,8 +130,7 @@ async function addRegistration({
       }
       // save that userId to userIds for multiple userIds
       const userIds = registrationData.map((item) => item.user_id);
-      //console.log("THISISMAP:" + userIds);
-
+   
       // find usernames for each userIds in profiles database
       const promises: Promise<any>[] = userIds.map(async (userId) => {
         const { data: profilesData, error: profilesError } = await supabase
@@ -185,22 +140,10 @@ async function addRegistration({
         if (profilesError) {
           throw profilesError;
         }
-        //console.log(data[0].username);
       return profilesData[0].username;
       });
     
-      // const { data: usersData, error: usersError } = await supabase
-      //   .from('profiles')
-      //   .select('username')
-      //   .in('id', userIds);
-  
-      // if (usersError) {
-      //   throw usersError;
-      // }
-  
-      // const usernames = usersData.map((item) => item.username);
-  
-      // return usernames;
+
 
       const usernames = await Promise.all(promises);
       console.log(usernames)
@@ -231,8 +174,8 @@ async function addRegistration({
 
         <Text size="sm" color="dimmed"></Text>
 
-        <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={handleOpen}>
-          Register {eventDetails.event_time ? 'for' : ''} {eventDetails.event_time}
+        <Button variant="light" color="blue" radius="md" onClick={handleOpen}>
+          Register {eventDetails.event_time ? 'for ' + new Date(eventDetails.event_time).toLocaleString() : ''} 
         </Button>
       </Card>
 
