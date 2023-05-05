@@ -58,6 +58,7 @@ export default function EventFrame(props: any) {
 
   }
 
+
   return (
     <>
       <Card shadow="sm" padding="lg" radius="md" withBorder>
@@ -74,8 +75,10 @@ export default function EventFrame(props: any) {
 
         <Text size="sm" color="dimmed"></Text>
 
-        <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={handleOpen}>
-          Register {eventDetails.event_time ? 'for' : ''} {eventDetails.event_time}
+        <Button variant="light" fw={4} color="blue" radius="md" onClick={handleOpen}>
+
+          Register {eventDetails.event_time ? 'for ' + new Date(eventDetails.event_time).toLocaleString(): ''}
+
         </Button>
       </Card>
 
