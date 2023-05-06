@@ -100,8 +100,13 @@ export default function Homepage({ session }: { session: Session }) {
         </li>
         <li>
       <div>
+
+      <a  className="headerBtn" target="_blank" href="https://langchain-supabase-website-chatbot-pi.vercel.app/" rel="noopener noreferrer">
+        <Button>💬 &nbsp; U-Chat</Button>
+      </a>
+
         <Button
-        className={showDropDown ? "active" : undefined}
+        className={showDropDown ? "headerBtn active"  : "headerBtn"}
         onClick={(): void => toggleDropDown()}
         onBlur={(e: React.FocusEvent<HTMLButtonElement>): void =>
           dismissHandler(e)
@@ -117,10 +122,8 @@ export default function Homepage({ session }: { session: Session }) {
           />
         )}
         </Button>
-
-
         <Link href="/addevent">
-          <Button>📅 &nbsp; New Event</Button>
+          <Button className="headerBtn" >📅 &nbsp; New Event</Button>
         </Link>
         <Link href="/profile">
           <Button className="headerBtn">💁 &nbsp; Profile</Button>
