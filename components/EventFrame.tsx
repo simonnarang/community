@@ -28,7 +28,9 @@ export default function EventFrame(props: any) {
 
   const [userNames, setUserNames] = useState<string[]>([]);
 
+
   useEffect(() => {
+
     async function convertAvatarToUrl(path: string | null) {
       try {
         const { data, error } = await supabase.storage.from('flyers').download(path as string)
@@ -160,22 +162,26 @@ async function addRegistration({
 
   return (
     <>
-      <Card shadow="sm" padding="lg" radius="md" withBorder>
+      <Card shadow="sm" padding="lg" radius="md" withBorder style={{height:330}}>
         <Card.Section>
-          <Image src={eventDetails.event_avatar ? (url as string) : testUrl} height={160} />
+          {eventDetails.event_avatar && (
+            <Image src={eventDetails.event_avatar ? (url as string) : null} height={160} />
+          )}
+          {!eventDetails.event_avatar && (
+            <div style={{height: 160}}></div>
+          )}
         </Card.Section>
 
         <Group position="apart" mt="md" mb="xs">
           <Text weight={500}>{eventDetails.event_name}</Text>
-          <Badge color="pink" w={100} variant="light">
-            {eventDetails.org_name}
-          </Badge>
         </Group>
-
+        <Badge color="pink" w={100} variant="light" style={{marginBottom: 10}}>
+            {eventDetails.org_name}
+        </Badge>
         <Text size="sm" color="dimmed"></Text>
 
-        <Button variant="light" color="blue" radius="md" onClick={handleOpen}>
-          Register {eventDetails.event_time ? 'for ' + new Date(eventDetails.event_time).toLocaleString() : ''} 
+        <Button variant="light" color="blue" radius="md" onClick={handleOpen} style={{width: "100%" }}>
+          Register {eventDetails.event_time ? 'for ' + new Date(eventDetails.event_time).toDateString().substring(0, 10) : ''} 
         </Button>
       </Card>
 
