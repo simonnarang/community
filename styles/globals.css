@@ -1,4 +1,4 @@
-html,
+ html,
 body {
   --custom-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -35,6 +35,7 @@ body,
 }
 
 /* Grid */
+
 
 .container {
   width: 90%;
@@ -510,11 +511,14 @@ body {
 
 .header {
 	z-index: 1;
-	background: linear-gradient(-45deg, red, blue, #000, #6B00D7);
-	background-size: 400% 400%;
+	/* background: linear-gradient(-45deg, red, blue, #000, #6B00D7); */
+	/* background-size: 400% 400%; */
+  background: none;
+  background-color: rgba(0, 0, 0, 0.7);
 	width: 100%;
 	height: 100vh;
-	animation: animate 15s ease infinite;
+  position: fixed;
+	/* animation: animate 15s ease infinite; */
 }
 
 #logo {
@@ -523,7 +527,8 @@ body {
 }
 
 #headerHome {
-  animation: none
+  animation: none;
+  background: linear-gradient(-45deg, #000, #000, #000, #6B00D7);;
 }
 
 #headerLanding {
@@ -598,4 +603,26 @@ body {
 
 #link {
   text-decoration: none;
+}
+
+.vid {   
+  object-fit: cover;   
+  /* width: 100%;
+  height: 100%; */
+  position: fixed;
+  /* z-index: -1;  */
+  
+  min-height: 100%;
+  min-width: 100%; 
+}
+
+#myVideo {
+  position: fixed; right: 0; bottom: 0;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+  background-size: cover;
+  }
+
+.idx {
+  position: relative;
 }
