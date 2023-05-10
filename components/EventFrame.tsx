@@ -175,7 +175,7 @@ async function addRegistration({
         <Group position="apart" mt="md" mb="xs">
           <Text weight={500}>{eventDetails.event_name}</Text>
         </Group>
-        <Badge color="pink" w={100} variant="light" style={{marginBottom: 10}}>
+        <Badge color="pink" style={{width:"100%", marginBottom: 10}} variant="light">
             {eventDetails.org_name}
         </Badge>
         <Text size="sm" color="dimmed"></Text>
@@ -196,7 +196,7 @@ async function addRegistration({
         }}
         style={{ textAlign: 'center' }}
       >
-        <Badge color="pink" w={100} variant="light">
+        <Badge color="pink" w={200} variant="light">
           {eventDetails.org_name}
         </Badge>
 
